@@ -31,7 +31,7 @@ export default function EmailTemplate({ emailAlertsData }: Props) {
                 <tr>
                   <td style={imageSection}>
                     <Img
-                      className="w-4/12"
+                      className="w-1/2"
                       src={`${baseUrl}/logo.png`}
                       alt="Your Image"
                       // style={userImage}
@@ -113,11 +113,11 @@ export default function EmailTemplate({ emailAlertsData }: Props) {
                   follows:-
                 </p>
                 <table className="border-collapse w-full">
-                  <tr className="bg-[#204B1B] text-white ">
+                  <tr className="bg-white">
                     <th
                       className="text-sm"
                       style={{
-                        border: "1px solid #dddddd",
+                        border: "1px solid #204B1B",
                         textAlign: "left",
                         padding: "8px",
                       }}
@@ -127,7 +127,7 @@ export default function EmailTemplate({ emailAlertsData }: Props) {
                     <th
                       className="text-sm"
                       style={{
-                        border: "1px solid #dddddd",
+                        border: "1px solid #204B1B",
                         textAlign: "left",
                         padding: "8px",
                       }}
@@ -141,7 +141,7 @@ export default function EmailTemplate({ emailAlertsData }: Props) {
                         <td
                           className="text-sm"
                           style={{
-                            border: "1px solid #dddddd",
+                            border: "1px solid #204B1B",
                             textAlign: "left",
                             padding: "8px",
                           }}
@@ -151,7 +151,7 @@ export default function EmailTemplate({ emailAlertsData }: Props) {
                         <td
                           className="text-sm"
                           style={{
-                            border: "1px solid #dddddd",
+                            border: "1px solid #204B1B",
                             textAlign: "left",
                             padding: "8px",
                           }}
