@@ -12,7 +12,7 @@ import {
   Tailwind,
 } from "@react-email/components";
 
-const baseUrl = "https://visionmis.vercel.app";
+const baseUrl = "https://react-email-sage.vercel.app";
 
 interface Props {
   emailAlertsData: any;
@@ -31,16 +31,18 @@ export default function EmailTemplate({ emailAlertsData }: Props) {
                 <tr>
                   <td style={imageSection}>
                     <Img
-                      src={`${baseUrl}/images/vision.png`}
+                      className="w-4/12"
+                      src={`${baseUrl}/logo.png`}
                       alt="Your Image"
-                      style={userImage}
+                      // style={userImage}
                     />
                   </td>
                   <td style={imageSection}>
-                    <h4 className="text-white text-right">Florisynergy</h4>
+                    <h4 className="text-right">Florisynergy</h4>
                   </td>
                 </tr>
               </table>
+              <Hr />
               <Section style={upperSection}>
                 <Heading className="text-xl">
                   KORDES ROSEN LETTER OF CONFIRMATION
@@ -105,8 +107,11 @@ export default function EmailTemplate({ emailAlertsData }: Props) {
                 </p>
               </Section>
               <Hr />
-              <p className="text-xs" style={mainText}>Please note that you will be required to pay license fees as follows:-</p>
               <Section style={upperSection}>
+                <p className="text-xs" style={mainText}>
+                  Please note that you will be required to pay license fees as
+                  follows:-
+                </p>
                 <table className="border-collapse w-full">
                   <tr className="bg-[#204B1B] text-white ">
                     <th
@@ -203,7 +208,7 @@ const container = {
 };
 
 const imageSection = {
-  backgroundColor: "#204B1B",
+  backgroundColor: "#ffffff",
   padding: "12px 12px",
 };
 
