@@ -103,7 +103,7 @@ export default function EmailTemplate({ emailAlertsData }: Props) {
                   Propagator: {emailAlertsData[0]?.propagator}
                 </p>
                 <p className="text-xs" style={mainText}>
-                  Value of License(EUR): {emailAlertsData[0]?.amount}
+                  Value of License(EUR): {parseInt(emailAlertsData[0]?.amount).toFixed(1)}
                 </p>
               </Section>
               <Hr />
