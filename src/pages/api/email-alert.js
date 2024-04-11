@@ -1,54 +1,75 @@
-import { Resend } from 'resend';
-import { API_URL,API_METHODS } from "../../assets/api-endpoints";
+import nodemailer from 'nodemailer';
+import ReactDOMServer from 'react-dom/server';
 import EmailTemplate from '../../../emails'
-import { backendAxiosInstance } from '../../assets/backend-axios-instance';
+import axios from 'axios';
+import { API_URL } from "../../assets/api-endpoints";
 
-export const config = {
-  api: {
-    bodyParser: {
-      sizeLimit: "1024mb", // Set desired value here
-    },
-  },
-};
+// Function to send email
+export async function sendEmail({ to, subject, html }) {
+    const { SMTP_EMAIL, SMTP_PASSWORD } = process.env;
 
-export default async function handler(req, res) {
-  
-  if (req.method === API_METHODS.GET) {
+    // Create transporter
+    const transporter = nodemailer.createTransport({
+        service: 'gmail',
+        auth: {
+            user: SMTP_EMAIL,
+            pass: SMTP_PASSWORD
+        }
+    });
+
     try {
-      const config = {
-        headers: {
-          Authorization: req.headers.authorization,
-        },
-      };
-
-      // Fetch email alerts
-      const response = await backendAxiosInstance.get(
-        `${API_URL.EMAIL_ALERT}?api_key=${process.env.NEXT_PUBLIC_API_KEY}`,
-        config
-      );
-
-      // Extract data from response
-      const emailAlertsData = response.data;
-      // Send email with data
-      const resend = new Resend(process.env.RESEND_API_KEY);
-      const { data: emailData, error: emailError } = await resend.emails.send({
-        from: 'Florisynergy <onboarding@resend.dev>',
-        to: ["support@thinksynergy.co.ke","anthony@thinksynergy.co.ke"],
-        subject: 'KORDES ROSEN LETTER OF CONFIRMATION',
-        react: EmailTemplate({ emailAlertsData }),
-      });
-  
-      if (emailError) {
-        return res.status(400).json(emailError);
-      }
-
-      // Return success response
-      res.status(200).json({ success: true, message: 'Email sent successfully' });
+        // Verify transporter
+        await transporter.verify();
+        console.log("Transporter verified successfully.");
     } catch (error) {
-      console.error("Error sending email:", error);
-      res.status(500).json({ success: false, error: error.toString() });
+        console.log("Error verifying transporter:", error);
+        return;
     }
-  } else {
-    res.status(404).json({ message: "path not found!" });
-  }
+
+    try {
+        // Send email
+        const sendResult = await transporter.sendMail({
+            from: SMTP_EMAIL,
+            to,
+            subject,
+            html
+        });
+        console.log("Email sent successfully:", sendResult);
+    } catch (err) {
+        console.log("Error sending email:", err);
+    }
+}
+
+// Handler function
+export default async function handler(req, res) {
+
+    if (req.method === 'GET') {
+        try {
+            // Fetch data from the API endpoint
+            const { data: emailAlertsData } = await axios.get(`${API_URL.EMAIL_ALERT}?api_key=${process.env.NEXT_PUBLIC_API_KEY}`);
+
+
+            // Generate HTML content using the template component
+            const emailBody = ReactDOMServer.renderToString(
+                <EmailTemplate
+                emailAlertsData={emailAlertsData}
+                />
+            );
+
+            // Send email
+            await sendEmail({
+                to: ["anthony@thinksynergy.co.ke","support@thinksynergy.co.ke"],
+                subject: 'KORDES ROSEN LETTER OF CONFIRMATION',
+                html: emailBody
+            });
+
+            // Return success response
+            res.status(200).json({ success: true, message: 'Email sent successfully' });
+        } catch (error) {
+            console.error('Error sending email:', error);
+            res.status(500).json({ success: false, error: 'Internal server error' });
+        }
+    } else {
+        res.status(405).json({ success: false, message: 'Method Not Allowed' });
+    }
 }

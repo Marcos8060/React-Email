@@ -55,7 +55,7 @@ export default function EmailTemplate({ emailAlertsData }: Props) {
                   LETTER OF CONFIRMATION
                 </p>
                 <p className="text-xs" style={mainText}>
-                  DATE: 2023-07-10
+                  DATE: {emailAlertsData[0]?.duedate1}
                 </p>
                 <p className="text-xs" style={mainText}>
                   ATT: {emailAlertsData[0]?.growername}
@@ -82,10 +82,10 @@ export default function EmailTemplate({ emailAlertsData }: Props) {
                   Variety: {emailAlertsData[0]?.variety}
                 </p>
                 <p className="text-xs" style={mainText}>
-                  Denomination: KORcut0521
+                  Denomination: {emailAlertsData[0]?.denomination}
                 </p>
                 <p className="text-xs" style={mainText}>
-                  Tradename: Unicorn
+                  Tradename: {emailAlertsData[0]?.tradename}
                 </p>
                 <p className="text-xs" style={mainText}>
                   Plants: {emailAlertsData[0]?.totalplants}
