@@ -156,7 +156,7 @@ export default function EmailTemplate({ emailAlertsData }: Props) {
                             padding: "8px",
                           }}
                         >
-                          {(item?.dueamount1).toFixed(1)}
+                          {parseInt(item?.dueamount1).toFixed(1)}
                         </td>
                       </tr>
                     ))}
