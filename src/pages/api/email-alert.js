@@ -48,7 +48,6 @@ export default async function handler(req, res) {
             // Fetch data from the API endpoint
             const { data: emailAlertsData } = await axios.get(`${API_URL.EMAIL_ALERT}?api_key=${process.env.NEXT_PUBLIC_API_KEY}`);
 
-
             // Generate HTML content using the template component
             const emailBody = ReactDOMServer.renderToString(
                 <EmailTemplate
