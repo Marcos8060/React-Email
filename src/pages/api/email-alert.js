@@ -49,7 +49,7 @@ export default async function handler(req, res) {
         `${API_URL.EMAIL_ALERT}?api_key=${process.env.NEXT_PUBLIC_API_KEY}`
       );
 
-      if (emailAlertsData && emailAlertsData.length > 0) {
+      if (emailAlertsData !== "No more LOC's to process.") {
         // Generate HTML content using the template component
         const emailBody = ReactDOMServer.renderToString(
           <EmailTemplate emailAlertsData={emailAlertsData} />
