@@ -55,7 +55,7 @@ export default function EmailTemplate({ emailAlertsData }: Props) {
                   LETTER OF CONFIRMATION
                 </p>
                 <p className="text-xs" style={mainText}>
-                  DATE: {emailAlertsData[0]?.duedate1}
+                  DATE: {emailAlertsData[0]?.orderdate}
                 </p>
                 <p className="text-xs" style={mainText}>
                   ATT: {emailAlertsData[0]?.growername}

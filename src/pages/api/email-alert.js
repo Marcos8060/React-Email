@@ -49,7 +49,6 @@ export default async function handler(req, res) {
         `${API_URL.EMAIL_ALERT}?api_key=${process.env.NEXT_PUBLIC_API_KEY}`
       );
 
-      console.log("JSON_REPONSE ",emailAlertsData)
 
       if (emailAlertsData !== "No more LOC's to process." && emailAlertsData !== "") {
         // Generate HTML content using the template component
