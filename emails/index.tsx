@@ -105,6 +105,9 @@ export default function EmailTemplate({ emailAlertsData }: Props) {
                 <p className="text-xs" style={mainText}>
                   Value of License(EUR): {parseInt(emailAlertsData[0]?.amount).toFixed(1)}
                 </p>
+                <p className="text-xs" style={mainText}>
+                  Rate: {emailAlertsData[0]?.rate}
+                </p>
               </Section>
               <Hr />
               <Section style={upperSection}>

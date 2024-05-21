@@ -49,7 +49,6 @@ export default async function handler(req, res) {
         `${API_URL.EMAIL_ALERT}?api_key=${process.env.NEXT_PUBLIC_API_KEY}`
       );
 
-
       if (emailAlertsData !== "No more LOC's to process." && emailAlertsData !== "") {
         // Generate HTML content using the template component
         const emailBody = ReactDOMServer.renderToString(
@@ -59,11 +58,10 @@ export default async function handler(req, res) {
         // Send email
         await sendEmail({
           to: [
-            // "marcosgav80@gmail.com"
-            "licenceea@kordes-rosen.com", 
+            // "licenceea@kordes-rosen.com", 
             "support@thinksynergy.co.ke",
-            "christian@kreative-roses.com",
-            "bas@kreative-roses.com"
+            // "christian@kreative-roses.com",
+            // "bas@kreative-roses.com"
            ],
           subject: "KORDES ROSEN LETTER OF CONFIRMATION",
           html: emailBody,
