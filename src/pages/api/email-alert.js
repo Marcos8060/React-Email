@@ -10,7 +10,9 @@ export async function sendEmail({ to, subject, html }) {
 
   // Create transporter
   const transporter = nodemailer.createTransport({
-    service: "gmail",
+    host: "smtp.office365.com",
+    port: 587,
+    secure: false, // true for 465, false for other ports
     auth: {
       user: SMTP_EMAIL,
       pass: SMTP_PASSWORD,
@@ -49,20 +51,24 @@ export default async function handler(req, res) {
         `${API_URL.EMAIL_ALERT}?api_key=${process.env.NEXT_PUBLIC_API_KEY}`
       );
 
+      console.log("JSON_RESPONSE ",emailAlertsData)
+
       if (emailAlertsData !== "No more LOC's to process." && emailAlertsData !== "") {
         // Generate HTML content using the template component
         const emailBody = ReactDOMServer.renderToString(
           <EmailTemplate emailAlertsData={emailAlertsData} />
         );
 
+
         // Send email
         await sendEmail({
           to: [
-            "licenceea@kordes-rosen.com", 
+            "licenceea@kordes-rosen.com",
             "support@thinksynergy.co.ke",
             "christian@kreative-roses.com",
-            "bas@kreative-roses.com"
-           ],
+            "bas@kreative-roses.com",
+            `${emailAlertsData[0]?.contractemailrecipient}`,
+          ],
           subject: "KORDES ROSEN LETTER OF CONFIRMATION",
           html: emailBody,
         });
