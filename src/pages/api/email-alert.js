@@ -53,7 +53,7 @@ export default async function handler(req, res) {
 
       console.log("JSON_RESPONSE ",emailAlertsData)
 
-      if (emailAlertsData !== "No more LOC's to process." && emailAlertsData !== "") {
+      if (emailAlertsData !== "No more LOC's to process." && emailAlertsData !== "" && emailAlertsData[0]?.growercode !== "") {
         // Generate HTML content using the template component
         const emailBody = ReactDOMServer.renderToString(
           <EmailTemplate emailAlertsData={emailAlertsData} />
@@ -63,10 +63,10 @@ export default async function handler(req, res) {
         // Send email
         await sendEmail({
           to: [
-            "licenceea@kordes-rosen.com",
+            // "licenceea@kordes-rosen.com",
             "support@thinksynergy.co.ke",
-            "christian@kreative-roses.com",
-            "bas@kreative-roses.com",
+            // "christian@kreative-roses.com",
+            // "bas@kreative-roses.com",
             `${emailAlertsData[0]?.contractemailrecipient}`,
           ],
           subject: "KORDES ROSEN LETTER OF CONFIRMATION",
