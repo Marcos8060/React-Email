@@ -63,10 +63,10 @@ export default async function handler(req, res) {
         // Send email
         await sendEmail({
           to: [
-            // "licenceea@kordes-rosen.com",
+            "licenceea@kordes-rosen.com",
             "support@thinksynergy.co.ke",
-            // "christian@kreative-roses.com",
-            // "bas@kreative-roses.com",
+            "christian@kreative-roses.com",
+            "bas@kreative-roses.com",
             `${emailAlertsData[0]?.contractemailrecipient}`,
           ],
           subject: "KORDES ROSEN LETTER OF CONFIRMATION",
