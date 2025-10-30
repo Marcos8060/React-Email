@@ -6,7 +6,7 @@ import { API_URL } from "../../assets/api-endpoints";
 
 // Function to send email
 export async function sendEmail({ to, subject, html }) {
-  const { SMTP_EMAIL, SMTP_PASSWORD } = process.env;
+  const { KORDES_SMTP_EMAIL, KORDES_SMTP_PASSWORD } = process.env;
 
   // Create transporter
   const transporter = nodemailer.createTransport({
@@ -14,8 +14,8 @@ export async function sendEmail({ to, subject, html }) {
     port: 587,
     secure: false, // true for 465, false for other ports
     auth: {
-      user: SMTP_EMAIL,
-      pass: SMTP_PASSWORD,
+      user: KORDES_SMTP_EMAIL,
+      pass: KORDES_SMTP_PASSWORD,
     },
   });
 
@@ -31,7 +31,7 @@ export async function sendEmail({ to, subject, html }) {
   try {
     // Send email
     const sendResult = await transporter.sendMail({
-      from: SMTP_EMAIL,
+      from: KORDES_SMTP_EMAIL,
       to,
       subject,
       html,
