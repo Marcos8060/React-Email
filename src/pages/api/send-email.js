@@ -60,7 +60,7 @@ export default async function handler(req, res) {
       // Send email
       await sendEmail({
         to: [
-          "marcosgav80@gmail.com",
+          // "marcosgav80@gmail.com",
           "anthony@thinksynergy.co.ke",
         ],
         subject: "Interplant Roses Letter of Confirmation",
