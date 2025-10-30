@@ -63,7 +63,7 @@ export default async function handler(req, res) {
           "marcosgav80@gmail.com",
           "anthony@thinksynergy.co.ke",
         ],
-        subject: "INTERPLANT ROSES EA – LETTER OF CONFIRMATION",
+        subject: "Interplant Roses Letter of Confirmation",
         html: emailBody,
       });
 

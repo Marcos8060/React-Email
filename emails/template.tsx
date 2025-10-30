@@ -22,7 +22,7 @@ export default function LOCTemplate({ emailAlertsData }: Props) {
   return (
     <Html>
       <Head />
-      <Preview>INTERPLANT ROSES EA – LETTER OF CONFIRMATION</Preview>
+      <Preview>Interplant Roses Letter of Confirmation</Preview>
       <Tailwind>
         <Body style={main}>
           <Container style={container}>
@@ -44,7 +44,7 @@ export default function LOCTemplate({ emailAlertsData }: Props) {
               <Hr />
               <Section style={upperSection}>
                 <Heading className="text-xl">
-                  KORDES ROSEN LETTER OF CONFIRMATION
+                  Interplant Roses Letter of Confirmation
                 </Heading>
                 <p className="text-sm" style={mainText}>
                   Naivasha, Kenya.
@@ -69,6 +69,8 @@ export default function LOCTemplate({ emailAlertsData }: Props) {
                   Roses EA. We hereby confirm your intention to establish the
                   following variety under the agreed terms:
                 </p>
+                <Hr />
+                <p className="my-2 font-semibold text-xl">Variety Details</p>
                 <table className="border-collapse w-full mb-4">
                   <tr className="bg-white">
                     <th
@@ -140,16 +142,7 @@ export default function LOCTemplate({ emailAlertsData }: Props) {
                     >
                       Propagator
                     </th>
-                    <th
-                      className="text-sm"
-                      style={{
-                        border: "1px solid #204B1B",
-                        textAlign: "left",
-                        padding: "8px",
-                      }}
-                    >
-                      Recipient Email
-                    </th>
+                    
                     <th
                       className="text-sm"
                       style={{
@@ -234,16 +227,7 @@ export default function LOCTemplate({ emailAlertsData }: Props) {
                         >
                           {item?.propagator}
                         </td>
-                        <td
-                          className="text-sm"
-                          style={{
-                            border: "1px solid #204B1B",
-                            textAlign: "left",
-                            padding: "8px",
-                          }}
-                        >
-                          {item?.recipientemailaddress}
-                        </td>
+                       
                         <td
                           className="text-sm"
                           style={{
