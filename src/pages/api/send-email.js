@@ -61,6 +61,7 @@ export default async function handler(req, res) {
       await sendEmail({
         to: [
           // "marcosgav80@gmail.com",
+          `${emailAlertsData[0]?.recipientemailaddress}`,
           "anthony@thinksynergy.co.ke",
         ],
         subject: "Interplant Roses Letter of Confirmation",
